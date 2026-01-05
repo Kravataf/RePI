@@ -1,0 +1,64 @@
+# Gradle
+.gradle/
+gradle/
+build/
+run/
+
+# MCreator
+.mcreator/
+
+# Eclipse (MCreator uses Eclipse-based workspace)
+.settings/
+.classpath
+.project
+bin/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# Logs
+*.log
+
+# Compiled files
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
+
+# Generated sources (if you want to exclude them)
+# Uncomment if you don't want to track generated source files
+# src/
+
+# Gradle wrapper (optional - some prefer to include it)
+gradlew
+gradlew.bat
+
+# Minecraft run directory
+run/saves/
+run/screenshots/
+run/logs/
+run/crash-reports/
+run/resourcepacks/
+run/config/
