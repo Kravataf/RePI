@@ -1,10 +1,53 @@
 {
-  "id_map": {},
-  "mod_elements": [],
+  "id_map": {
+    "ENTITY": 2
+  },
+  "mod_elements": [
+    {
+      "name": "TaintedHumanoid",
+      "type": "mob",
+      "sortid": 1,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {
+        "0": 1,
+        "1": 2
+      }
+    },
+    {
+      "name": "ParasiteSpawn",
+      "type": "procedure",
+      "sortid": 2,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ParasiteTarget",
+      "type": "procedure",
+      "sortid": 3,
+      "compiles": true,
+      "locked_code": true,
+      "ids": {},
+      "metadata": {
+        "dependencies": []
+      }
+    }
+  ],
   "variable_elements": [],
   "sound_elements": [],
   "language_map": {
-    "en_us": {}
+    "en_us": {
+      "entity.taintedhumanoid.name": "Tainted Humanoid"
+    }
   },
   "workspaceSettings": {
     "modid": "reparasiteinfection",
