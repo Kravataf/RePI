@@ -45,8 +45,8 @@
   "variable_elements": [],
   "sound_elements": [
     {
-      "name": "taintedhumanoiddeath",
-      "file": "aintedumanoideath",
+      "name": "tainteddeath2",
+      "file": "aintedeath2",
       "category": "hostile"
     }
   ],

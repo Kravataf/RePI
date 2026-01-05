@@ -1,9 +1,9 @@
 {
-  "taintedhumanoiddeath": {
+  "tainteddeath2": {
     "category": "hostile",
     "sounds": [
       {
-        "name": "reparasiteinfection:aintedumanoideath",
+        "name": "reparasiteinfection:aintedeath2",
         "stream": false
       }
     ]

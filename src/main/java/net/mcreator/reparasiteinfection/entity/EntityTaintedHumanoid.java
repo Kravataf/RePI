@@ -140,7 +140,7 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 		@Override
 		public net.minecraft.util.SoundEvent getDeathSound() {
 			return (net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY
-					.getObject(new ResourceLocation("reparasiteinfection:taintedhumanoiddeath"));
+					.getObject(new ResourceLocation("reparasiteinfection:tainteddeath2"));
 		}
 
 		@Override
