@@ -29,17 +29,6 @@
           }
         ]
       }
-    },
-    {
-      "name": "ParasiteTarget",
-      "type": "procedure",
-      "sortid": 3,
-      "compiles": true,
-      "locked_code": true,
-      "ids": {},
-      "metadata": {
-        "dependencies": []
-      }
     }
   ],
   "variable_elements": [],
