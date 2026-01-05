@@ -54,6 +54,8 @@ public class ElementsReParasiteInfection implements IFuelHandler, IWorldGenerato
 	public final List<Supplier<Potion>> potions = new ArrayList<>();
 	public static Map<ResourceLocation, net.minecraft.util.SoundEvent> sounds = new HashMap<>();
 	public ElementsReParasiteInfection() {
+		sounds.put(new ResourceLocation("reparasiteinfection", "taintedhumanoiddeath"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("reparasiteinfection", "taintedhumanoiddeath")));
 	}
 
 	public void preInit(FMLPreInitializationEvent event) {

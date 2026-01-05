@@ -27,16 +27,22 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.model.ModelBiped;
 
 import net.mcreator.reparasiteinfection.procedure.ProcedureParasiteSpawn;
+import net.mcreator.reparasiteinfection.procedure.ProcedureParasiteKill;
 import net.mcreator.reparasiteinfection.ElementsReParasiteInfection;
 
 import java.util.Iterator;
 import java.util.ArrayList;
+// added these
+import net.minecraft.entity.EntityLivingBase;
+import com.google.common.base.Predicate;
+import javax.annotation.Nullable;
 
 @ElementsReParasiteInfection.ModElement.Tag
 public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElement {
@@ -96,8 +102,13 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 
 		@Override
 		protected void initEntityAI() {
-			super.initEntityAI();
-			this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityLiving.class, false, false));
+			super.initEntityAI();// changed attackable target
+			this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 10, false, false, new Predicate<EntityLivingBase>() {
+			    @Override
+			    public boolean apply(@Nullable EntityLivingBase entity) {
+			        return entity != null && !entity.getEntityData().getBoolean("ReParasite");
+			    }
+			}));
 			this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
 			this.tasks.addTask(3, new EntityAIAttackMelee(this, 1, false));
 			this.tasks.addTask(4, new EntityAIWander(this, 1));
@@ -128,7 +139,8 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 
 		@Override
 		public net.minecraft.util.SoundEvent getDeathSound() {
-			return (net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY.getObject(new ResourceLocation("entity.generic.death"));
+			return (net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY
+					.getObject(new ResourceLocation("reparasiteinfection:taintedhumanoiddeath"));
 		}
 
 		@Override
@@ -149,6 +161,18 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 				ProcedureParasiteSpawn.executeProcedure($_dependencies);
 			}
 			return retval;
+		}
+
+		@Override
+		public void onKillEntity(EntityLivingBase entity) {
+			super.onKillEntity(entity);
+			int x = (int) this.posX;
+			int y = (int) this.posY;
+			int z = (int) this.posZ;
+			{
+				java.util.HashMap<String, Object> $_dependencies = new java.util.HashMap<>();
+				ProcedureParasiteKill.executeProcedure($_dependencies);
+			}
 		}
 
 		@Override

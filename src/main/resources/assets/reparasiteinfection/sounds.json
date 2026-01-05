@@ -1,1 +1,11 @@
-{}
+{
+  "taintedhumanoiddeath": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "reparasiteinfection:aintedumanoideath",
+        "stream": false
+      }
+    ]
+  }
+}

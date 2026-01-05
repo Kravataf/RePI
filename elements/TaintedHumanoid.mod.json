@@ -74,7 +74,7 @@
       "value": "entity.generic.hurt"
     },
     "deathSound": {
-      "value": "entity.generic.death"
+      "value": "CUSTOM:taintedhumanoiddeath"
     },
     "spawnParticles": false,
     "particleToSpawn": {
@@ -84,6 +84,9 @@
     "particleSpawningRadious": 0.5,
     "particleAmount": 4,
     "particleSpawningCondition": "ALWAYS",
+    "whenThisMobKillsAnother": {
+      "name": "ParasiteKill"
+    },
     "onInitialSpawn": {
       "name": "ParasiteSpawn"
     },

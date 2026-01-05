@@ -8,7 +8,7 @@
       "type": "mob",
       "sortid": 1,
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "ids": {
         "0": 1,
         "1": 2
@@ -29,10 +29,27 @@
           }
         ]
       }
+    },
+    {
+      "name": "ParasiteKill",
+      "type": "procedure",
+      "sortid": 3,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "metadata": {
+        "dependencies": []
+      }
     }
   ],
   "variable_elements": [],
-  "sound_elements": [],
+  "sound_elements": [
+    {
+      "name": "taintedhumanoiddeath",
+      "file": "aintedumanoideath",
+      "category": "hostile"
+    }
+  ],
   "language_map": {
     "en_us": {
       "entity.taintedhumanoid.name": "Tainted Humanoid"
