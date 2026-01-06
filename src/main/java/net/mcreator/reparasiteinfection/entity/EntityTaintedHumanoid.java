@@ -77,7 +77,7 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 		RenderingRegistry.registerEntityRenderingHandler(EntityCustom.class, renderManager -> {
 			RenderBiped customRender = new RenderBiped(renderManager, new ModelBiped(), 0.5f) {
 				protected ResourceLocation getEntityTexture(Entity entity) {
-					return new ResourceLocation("reparasiteinfection:textures/taintedumanoid_texture.png");
+					return new ResourceLocation("reparasiteinfection:textures/taintedumanoid_texture2.png");
 				}
 			};
 			customRender.addLayer(new net.minecraft.client.renderer.entity.layers.LayerBipedArmor(customRender) {

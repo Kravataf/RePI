@@ -4,7 +4,7 @@
   "definition": {
     "mobName": "Tainted Humanoid",
     "mobLabel": "",
-    "mobModelTexture": "taintedumanoid_texture.png",
+    "mobModelTexture": "taintedumanoid_texture2.png",
     "mobModelName": "Biped",
     "modelWidth": 0.6,
     "modelHeight": 1.8,
