@@ -102,7 +102,7 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 
 		@Override
 		protected void initEntityAI() {
-			super.initEntityAI();// changed attackable target
+			super.initEntityAI();
 			this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 10, false, false, new Predicate<EntityLivingBase>() {
 			    @Override
 			    public boolean apply(@Nullable EntityLivingBase entity) {
@@ -140,7 +140,7 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 		@Override
 		public net.minecraft.util.SoundEvent getDeathSound() {
 			return (net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY
-					.getObject(new ResourceLocation("reparasiteinfection:tainteddeath2"));
+					.getObject(new ResourceLocation("reparasiteinfection:taintedhumanoiddeath"));
 		}
 
 		@Override
@@ -171,6 +171,11 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 			int z = (int) this.posZ;
 			{
 				java.util.HashMap<String, Object> $_dependencies = new java.util.HashMap<>();
+				$_dependencies.put("entity", entity);
+				$_dependencies.put("x", x);
+				$_dependencies.put("y", y);
+				$_dependencies.put("z", z);
+				$_dependencies.put("world", world);
 				ProcedureParasiteKill.executeProcedure($_dependencies);
 			}
 		}
@@ -181,11 +186,11 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 			if (this.getEntityAttribute(SharedMonsterAttributes.ARMOR) != null)
 				this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(0D);
 			if (this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED) != null)
-				this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
+				this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4D);
 			if (this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH) != null)
 				this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15D);
 			if (this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE) != null)
-				this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5D);
+				this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6D);
 		}
 	}
 }
