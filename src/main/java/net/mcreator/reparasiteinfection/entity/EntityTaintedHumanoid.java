@@ -44,6 +44,8 @@ import java.util.ArrayList;
 import net.minecraft.entity.EntityLivingBase;
 import com.google.common.base.Predicate;
 import javax.annotation.Nullable;
+import net.minecraft.util.math.BlockPos;
+import net.mcreator.reparasiteinfection.ReParasiteInfectionVariables;
 
 @ElementsReParasiteInfection.ModElement.Tag
 public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElement {
@@ -92,6 +94,29 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 			experienceValue = 5;
 			this.isImmuneToFire = false;
 			setNoAI(!true);
+		}
+
+		@Override
+		public boolean getCanSpawnHere() {
+		    double rePoints = ReParasiteInfectionVariables.MapVariables.get(world).RePoints;
+		    
+		    boolean canSpawn = this.world.getBlockState((new BlockPos(this)).down()).canEntitySpawn(this) 
+		                      && this.world.checkNoEntityCollision(this.getEntityBoundingBox())
+		                      && !this.world.containsAnyLiquid(this.getEntityBoundingBox());
+		    
+		    if (!canSpawn) {
+		        return false;
+		    }
+		    
+		    if (rePoints <= 0) {
+		        return false;
+		    }
+		    
+		    if (rePoints >= 1) {
+		        return true;
+		    }
+		    
+		    return world.rand.nextDouble() < rePoints;
 		}
 
 		@Override

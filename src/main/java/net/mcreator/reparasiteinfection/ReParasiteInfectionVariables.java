@@ -14,6 +14,7 @@ import net.minecraft.client.Minecraft;
 public class ReParasiteInfectionVariables {
 	public static class MapVariables extends WorldSavedData {
 		public static final String DATA_NAME = "reparasiteinfection_mapvars";
+		public double RePoints = 20;
 		public MapVariables() {
 			super(DATA_NAME);
 		}
@@ -24,10 +25,12 @@ public class ReParasiteInfectionVariables {
 
 		@Override
 		public void readFromNBT(NBTTagCompound nbt) {
+			RePoints = nbt.getDouble("RePoints");
 		}
 
 		@Override
 		public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+			nbt.setDouble("RePoints", RePoints);
 			return nbt;
 		}
 
