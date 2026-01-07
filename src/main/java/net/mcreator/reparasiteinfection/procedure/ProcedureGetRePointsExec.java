@@ -1,6 +1,10 @@
 package net.mcreator.reparasiteinfection.procedure;
 
+import net.minecraftforge.fml.common.FMLCommonHandler;
+
 import net.minecraft.world.World;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.server.MinecraftServer;
 
 import net.mcreator.reparasiteinfection.ReParasiteInfectionVariables;
 import net.mcreator.reparasiteinfection.ElementsReParasiteInfection;
@@ -17,6 +21,11 @@ public class ProcedureGetRePointsExec extends ElementsReParasiteInfection.ModEle
 			return;
 		}
 		World world = (World) dependencies.get("world");
-		System.out.println((ReParasiteInfectionVariables.MapVariables.get(world).RePoints));
+		{
+			MinecraftServer mcserv = FMLCommonHandler.instance().getMinecraftServerInstance();
+			if (mcserv != null)
+				mcserv.getPlayerList().sendMessage(
+						new TextComponentString((("RePoints: ") + "" + ((ReParasiteInfectionVariables.MapVariables.get(world).RePoints)))));
+		}
 	}
 }

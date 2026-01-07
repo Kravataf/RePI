@@ -5,10 +5,10 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraft.world.World;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.Entity;
 
 import net.mcreator.reparasiteinfection.entity.EntityTaintedHumanoid;
+import net.mcreator.reparasiteinfection.ReParasiteInfectionVariables;
 import net.mcreator.reparasiteinfection.ElementsReParasiteInfection;
 
 @ElementsReParasiteInfection.ModElement.Tag
@@ -44,8 +44,16 @@ public class ProcedureParasiteKill extends ElementsReParasiteInfection.ModElemen
 		int z = (int) dependencies.get("z");
 		World world = (World) dependencies.get("world");
 		boolean found = false;
+		ReParasiteInfectionVariables.MapVariables
+				.get(world).RePoints = (double) ((ReParasiteInfectionVariables.MapVariables.get(world).RePoints) + 1);
+		ReParasiteInfectionVariables.MapVariables.get(world).syncData(world);
+		{
+			java.util.HashMap<String, Object> $_dependencies = new java.util.HashMap<>();
+			$_dependencies.put("world", world);
+			ProcedureSetPhase.executeProcedure($_dependencies);
+		}
 		found = (boolean) (false);
-		if ((entity instanceof EntityVillager)) {
+		if ((entity instanceof EntityTaintedHumanoid.EntityCustom)) {
 			if (!world.isRemote) {
 				Entity entityToSpawn = new EntityTaintedHumanoid.EntityCustom(world);
 				if (entityToSpawn != null) {

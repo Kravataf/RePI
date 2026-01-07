@@ -15,6 +15,7 @@ public class ReParasiteInfectionVariables {
 	public static class MapVariables extends WorldSavedData {
 		public static final String DATA_NAME = "reparasiteinfection_mapvars";
 		public double RePoints = 20;
+		public double Phase = 0;
 		public MapVariables() {
 			super(DATA_NAME);
 		}
@@ -26,11 +27,13 @@ public class ReParasiteInfectionVariables {
 		@Override
 		public void readFromNBT(NBTTagCompound nbt) {
 			RePoints = nbt.getDouble("RePoints");
+			Phase = nbt.getDouble("Phase");
 		}
 
 		@Override
 		public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 			nbt.setDouble("RePoints", RePoints);
+			nbt.setDouble("Phase", Phase);
 			return nbt;
 		}
 

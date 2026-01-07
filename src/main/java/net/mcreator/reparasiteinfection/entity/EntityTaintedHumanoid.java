@@ -98,7 +98,7 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 
 		@Override
 		public boolean getCanSpawnHere() {
-		    double rePoints = ReParasiteInfectionVariables.MapVariables.get(world).RePoints;
+		    double phase = ReParasiteInfectionVariables.MapVariables.get(world).Phase;
 		    
 		    boolean canSpawn = this.world.getBlockState((new BlockPos(this)).down()).canEntitySpawn(this) 
 		                      && this.world.checkNoEntityCollision(this.getEntityBoundingBox())
@@ -108,15 +108,17 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 		        return false;
 		    }
 		    
-		    if (rePoints <= 0) {
+		    if (phase < 0) {
 		        return false;
 		    }
 		    
-		    if (rePoints >= 1) {
+		    double spawnMultiplier = Math.pow(2, phase);
+		    
+		    if (spawnMultiplier >= 1) {
 		        return true;
 		    }
 		    
-		    return world.rand.nextDouble() < rePoints;
+		    return world.rand.nextDouble() < spawnMultiplier;
 		}
 
 		@Override
