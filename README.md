@@ -8,20 +8,19 @@ sfx are from zapsplat.com
 
 0 (0pts):
 
-    spawnrate 20
-
-
+    > spawnrate 20
+    
 1 (20pts):
 
-    spawnrate 40
+    > spawnrate 40
 
-    Tainted now spawn naturally
-
-
+    > Tainted now spawn naturally
+    
 2 (100pts):
 
-    spawnrate 80
-
+    > spawnrate 80
+    
 3 (1000pts):
 
-    spawnrate 160
+    > spawnrate 160
+    
