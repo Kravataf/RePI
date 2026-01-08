@@ -1,6 +1,6 @@
 {
   "id_map": {
-    "ENTITY": 4
+    "ENTITY": 6
   },
   "mod_elements": [
     {
@@ -12,22 +12,6 @@
       "ids": {
         "0": 1,
         "1": 2
-      }
-    },
-    {
-      "name": "ParasiteSpawn",
-      "type": "procedure",
-      "sortid": 2,
-      "compiles": true,
-      "locked_code": false,
-      "ids": {},
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
-        ]
       }
     },
     {
@@ -128,6 +112,33 @@
       "compiles": true,
       "locked_code": false,
       "ids": {}
+    },
+    {
+      "name": "TaintedPig",
+      "type": "mob",
+      "sortid": 10,
+      "compiles": true,
+      "locked_code": true,
+      "ids": {
+        "0": 5,
+        "1": 6
+      }
+    },
+    {
+      "name": "ParasiteTag",
+      "type": "procedure",
+      "sortid": 11,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
     }
   ],
   "variable_elements": [
@@ -157,7 +168,8 @@
       "entity.mollusk.name": "Mollusk",
       "item.brokencore.name": "Broken Core",
       "entity.taintedhumanoid.name": "Tainted Humanoid",
-      "advancements.readv.title": "Re:"
+      "advancements.readv.title": "Re:",
+      "entity.taintedpig.name": "Tainted Pig"
     }
   },
   "workspaceSettings": {

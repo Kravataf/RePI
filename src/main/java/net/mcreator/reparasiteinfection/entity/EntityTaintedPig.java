@@ -48,18 +48,17 @@ import net.minecraft.util.math.BlockPos;
 import net.mcreator.reparasiteinfection.ReParasiteInfectionVariables;
 
 @ElementsReParasiteInfection.ModElement.Tag
-public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElement {
-	public static final int ENTITYID = 1;
-	public static final int ENTITYID_RANGED = 2;
-	public EntityTaintedHumanoid(ElementsReParasiteInfection instance) {
-		super(instance, 1);
+public class EntityTaintedPig extends ElementsReParasiteInfection.ModElement {
+	public static final int ENTITYID = 5;
+	public static final int ENTITYID_RANGED = 6;
+	public EntityTaintedPig(ElementsReParasiteInfection instance) {
+		super(instance, 10);
 	}
 
 	@Override
 	public void initElements() {
 		elements.entities.add(() -> EntityEntryBuilder.create().entity(EntityCustom.class)
-				.id(new ResourceLocation("reparasiteinfection", "taintedhumanoid"), ENTITYID).name("taintedhumanoid").tracker(64, 3, true).egg(-1, -1)
-				.build());
+				.id(new ResourceLocation("reparasiteinfection", "taintedpig"), ENTITYID).name("taintedpig").tracker(64, 3, true).egg(-1, -1).build());
 	}
 
 	@Override
@@ -80,9 +79,9 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		RenderingRegistry.registerEntityRenderingHandler(EntityCustom.class, renderManager -> {
-			return new RenderLiving(renderManager, new ModeltaintedHumanoid_model(), 0.5f) {
+			return new RenderLiving(renderManager, new ModeltaintedPig(), 1f) {
 				protected ResourceLocation getEntityTexture(Entity entity) {
-					return new ResourceLocation("reparasiteinfection:textures/taintedumanoid_texture3.png");
+					return new ResourceLocation("reparasiteinfection:textures/taintedig_texture.png");
 				}
 			};
 		});
@@ -90,7 +89,7 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 	public static class EntityCustom extends EntityMob {
 		public EntityCustom(World world) {
 			super(world);
-			setSize(0.6f, 1.8f);
+			setSize(1f, 1f);
 			experienceValue = 5;
 			this.isImmuneToFire = false;
 			setNoAI(!true);
@@ -214,11 +213,13 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 		}
 	}
 
-	public static class ModeltaintedHumanoid_model extends ModelBase {
-		private final ModelRenderer Waist;
-		private final ModelRenderer Head;
-		private final ModelRenderer Head_r1;
-		private final ModelRenderer Body;
+	public static class ModeltaintedPig extends ModelBase {
+		private final ModelRenderer body;
+		private final ModelRenderer head;
+		private final ModelRenderer leg1;
+		private final ModelRenderer leg2;
+		private final ModelRenderer leg3;
+		private final ModelRenderer leg4;
 		private final ModelRenderer tentacle1;
 		private final ModelRenderer bone2;
 		private final ModelRenderer bone4;
@@ -235,149 +236,120 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 		private final ModelRenderer bone11;
 		private final ModelRenderer bone12;
 		private final ModelRenderer bone13;
-		private final ModelRenderer RightArm;
-		private final ModelRenderer RightArm_r1;
-		private final ModelRenderer LeftArm;
-		private final ModelRenderer LeftArm_r1;
-		private final ModelRenderer RightLeg;
-		private final ModelRenderer RightLeg_r1;
-		private final ModelRenderer LeftLeg;
-		private final ModelRenderer LeftLeg_r1;
-		public ModeltaintedHumanoid_model() {
+		public ModeltaintedPig() {
 			textureWidth = 64;
 			textureHeight = 64;
-			Waist = new ModelRenderer(this);
-			Waist.setRotationPoint(0.0F, 12.0F, 0.0F);
-			setRotationAngle(Waist, 0.2182F, 0.0F, 0.0F);
-			Head = new ModelRenderer(this);
-			Head.setRotationPoint(0.0F, -12.0F, -1.0F);
-			Waist.addChild(Head);
-			Head_r1 = new ModelRenderer(this);
-			Head_r1.setRotationPoint(0.0F, 0.0F, 1.0F);
-			Head.addChild(Head_r1);
-			setRotationAngle(Head_r1, 0.6545F, 0.0F, 0.0F);
-			Head_r1.cubeList.add(new ModelBox(Head_r1, 0, 0, -4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F, false));
-			Body = new ModelRenderer(this);
-			Body.setRotationPoint(0.0F, -12.0F, 0.0F);
-			Waist.addChild(Body);
-			Body.cubeList.add(new ModelBox(Body, 16, 16, -4.0F, 0.0F, -2.0F, 8, 12, 4, 0.0F, false));
+			body = new ModelRenderer(this);
+			body.setRotationPoint(0.0F, 11.0F, 2.0F);
+			setRotationAngle(body, 1.5708F, 0.0F, 0.0F);
+			body.cubeList.add(new ModelBox(body, 28, 8, -5.0F, -10.0F, -7.0F, 10, 16, 8, 0.0F, false));
+			head = new ModelRenderer(this);
+			head.setRotationPoint(0.0F, 11.0F, -7.0F);
+			setRotationAngle(head, 0.6109F, 0.0F, 0.0F);
+			head.cubeList.add(new ModelBox(head, 0, 0, -4.0F, -4.0F, -8.0F, 8, 8, 8, 0.0F, false));
+			head.cubeList.add(new ModelBox(head, 16, 16, -2.0F, 0.0F, -9.0F, 4, 3, 1, 0.0F, false));
+			leg1 = new ModelRenderer(this);
+			leg1.setRotationPoint(-3.0F, 18.0F, 7.0F);
+			leg1.cubeList.add(new ModelBox(leg1, 0, 16, -2.0F, 0.0F, -2.0F, 4, 6, 4, 0.0F, false));
+			leg2 = new ModelRenderer(this);
+			leg2.setRotationPoint(3.0F, 18.0F, 7.0F);
+			leg2.cubeList.add(new ModelBox(leg2, 0, 16, -2.0F, 0.0F, -2.0F, 4, 6, 4, 0.0F, false));
+			leg3 = new ModelRenderer(this);
+			leg3.setRotationPoint(-3.0F, 18.0F, -5.0F);
+			leg3.cubeList.add(new ModelBox(leg3, 0, 16, -2.0F, 0.0F, -2.0F, 4, 6, 4, 0.0F, false));
+			leg4 = new ModelRenderer(this);
+			leg4.setRotationPoint(3.0F, 18.0F, -5.0F);
+			leg4.cubeList.add(new ModelBox(leg4, 0, 16, -2.0F, 0.0F, -2.0F, 4, 6, 4, 0.0F, false));
 			tentacle1 = new ModelRenderer(this);
-			tentacle1.setRotationPoint(1.0F, -7.0F, 2.0F);
-			Waist.addChild(tentacle1);
-			setRotationAngle(tentacle1, 0.8727F, 0.0F, 0.7854F);
-			tentacle1.cubeList.add(new ModelBox(tentacle1, 0, 33, -2.0F, -2.0F, 0.0F, 4, 4, 6, 0.0F, false));
+			tentacle1.setRotationPoint(1.0F, 17.0F, 0.0F);
+			setRotationAngle(tentacle1, 1.5708F, 0.5236F, 2.0071F);
+			tentacle1.cubeList.add(new ModelBox(tentacle1, 0, 27, -2.0F, -2.0F, 0.0F, 4, 4, 6, 0.0F, false));
 			bone2 = new ModelRenderer(this);
 			bone2.setRotationPoint(0.0F, 0.0F, 6.0F);
 			tentacle1.addChild(bone2);
 			setRotationAngle(bone2, 0.48F, 0.0F, 0.0F);
-			bone2.cubeList.add(new ModelBox(bone2, 0, 32, -1.5F, -1.5F, 0.0F, 3, 3, 7, 0.0F, false));
+			bone2.cubeList.add(new ModelBox(bone2, 0, 26, -1.5F, -1.5F, 0.0F, 3, 3, 7, 0.0F, false));
 			bone4 = new ModelRenderer(this);
 			bone4.setRotationPoint(0.0F, 0.0F, 7.0F);
 			bone2.addChild(bone4);
 			setRotationAngle(bone4, 0.7854F, 0.0F, 0.0F);
-			bone4.cubeList.add(new ModelBox(bone4, 0, 32, -1.5F, -1.5F, 0.0F, 3, 3, 7, 0.0F, false));
+			bone4.cubeList.add(new ModelBox(bone4, 0, 26, -1.5F, -1.5F, 0.0F, 3, 3, 7, 0.0F, false));
 			bone3 = new ModelRenderer(this);
 			bone3.setRotationPoint(0.0F, 0.0F, 7.0F);
 			bone4.addChild(bone3);
 			setRotationAngle(bone3, 0.6981F, 0.0F, 0.0F);
-			bone3.cubeList.add(new ModelBox(bone3, 2, 33, -1.0F, -1.0F, 0.0F, 2, 2, 6, 0.0F, false));
+			bone3.cubeList.add(new ModelBox(bone3, 2, 27, -1.0F, -1.0F, 0.0F, 2, 2, 6, 0.0F, false));
 			tentacle2 = new ModelRenderer(this);
-			tentacle2.setRotationPoint(-1.0F, -7.0F, 2.0F);
-			Waist.addChild(tentacle2);
-			setRotationAngle(tentacle2, 0.8727F, 0.0F, -0.7854F);
-			tentacle2.cubeList.add(new ModelBox(tentacle2, 0, 33, -2.0F, -2.0F, 0.0F, 4, 4, 6, 0.0F, false));
+			tentacle2.setRotationPoint(-1.0F, 17.0F, 0.0F);
+			setRotationAngle(tentacle2, 1.5708F, -0.5236F, -2.0071F);
+			tentacle2.cubeList.add(new ModelBox(tentacle2, 0, 27, -2.0F, -2.0F, 0.0F, 4, 4, 6, 0.0F, false));
 			bone5 = new ModelRenderer(this);
 			bone5.setRotationPoint(0.0F, 0.0F, 6.0F);
 			tentacle2.addChild(bone5);
 			setRotationAngle(bone5, 0.48F, 0.0F, 0.0F);
-			bone5.cubeList.add(new ModelBox(bone5, 0, 32, -1.5F, -1.5F, 0.0F, 3, 3, 7, 0.0F, false));
+			bone5.cubeList.add(new ModelBox(bone5, 0, 26, -1.5F, -1.5F, 0.0F, 3, 3, 7, 0.0F, false));
 			bone6 = new ModelRenderer(this);
 			bone6.setRotationPoint(0.0F, 0.0F, 7.0F);
 			bone5.addChild(bone6);
 			setRotationAngle(bone6, 0.7854F, 0.0F, 0.0F);
-			bone6.cubeList.add(new ModelBox(bone6, 0, 32, -1.5F, -1.5F, 0.0F, 3, 3, 7, 0.0F, false));
+			bone6.cubeList.add(new ModelBox(bone6, 0, 26, -1.5F, -1.5F, 0.0F, 3, 3, 7, 0.0F, false));
 			bone7 = new ModelRenderer(this);
 			bone7.setRotationPoint(0.0F, 0.0F, 7.0F);
 			bone6.addChild(bone7);
 			setRotationAngle(bone7, 0.6981F, 0.0F, 0.0F);
-			bone7.cubeList.add(new ModelBox(bone7, 2, 33, -1.0F, -1.0F, 0.0F, 2, 2, 6, 0.0F, false));
+			bone7.cubeList.add(new ModelBox(bone7, 2, 27, -1.0F, -1.0F, 0.0F, 2, 2, 6, 0.0F, false));
 			tentacle3 = new ModelRenderer(this);
-			tentacle3.setRotationPoint(1.0F, -5.0F, 2.0F);
-			Waist.addChild(tentacle3);
-			setRotationAngle(tentacle3, 0.8727F, 0.0F, 2.3562F);
-			tentacle3.cubeList.add(new ModelBox(tentacle3, 0, 33, -2.0F, -2.0F, 0.0F, 4, 4, 6, 0.0F, false));
+			tentacle3.setRotationPoint(1.0F, 11.0F, 0.0F);
+			setRotationAngle(tentacle3, 1.1071F, 0.2527F, 0.9F);
+			tentacle3.cubeList.add(new ModelBox(tentacle3, 0, 27, -2.0F, -2.0F, 0.0F, 4, 4, 6, 0.0F, false));
 			bone8 = new ModelRenderer(this);
 			bone8.setRotationPoint(0.0F, 0.0F, 6.0F);
 			tentacle3.addChild(bone8);
 			setRotationAngle(bone8, 0.48F, 0.0F, 0.0F);
-			bone8.cubeList.add(new ModelBox(bone8, 0, 32, -1.5F, -1.5F, 0.0F, 3, 3, 7, 0.0F, false));
+			bone8.cubeList.add(new ModelBox(bone8, 0, 26, -1.5F, -1.5F, 0.0F, 3, 3, 7, 0.0F, false));
 			bone9 = new ModelRenderer(this);
 			bone9.setRotationPoint(0.0F, 0.0F, 7.0F);
 			bone8.addChild(bone9);
 			setRotationAngle(bone9, 0.7854F, 0.0F, 0.0F);
-			bone9.cubeList.add(new ModelBox(bone9, 0, 32, -1.5F, -1.5F, 0.0F, 3, 3, 7, 0.0F, false));
+			bone9.cubeList.add(new ModelBox(bone9, 0, 26, -1.5F, -1.5F, 0.0F, 3, 3, 7, 0.0F, false));
 			bone10 = new ModelRenderer(this);
 			bone10.setRotationPoint(0.0F, 0.0F, 7.0F);
 			bone9.addChild(bone10);
 			setRotationAngle(bone10, 0.6981F, 0.0F, 0.0F);
-			bone10.cubeList.add(new ModelBox(bone10, 2, 33, -1.0F, -1.0F, 0.0F, 2, 2, 6, 0.0F, false));
+			bone10.cubeList.add(new ModelBox(bone10, 2, 27, -1.0F, -1.0F, 0.0F, 2, 2, 6, 0.0F, false));
 			tentacle4 = new ModelRenderer(this);
-			tentacle4.setRotationPoint(-1.0F, -5.0F, 2.0F);
-			Waist.addChild(tentacle4);
-			setRotationAngle(tentacle4, 0.8727F, 0.0F, -2.3562F);
-			tentacle4.cubeList.add(new ModelBox(tentacle4, 0, 33, -2.0F, -2.0F, 0.0F, 4, 4, 6, 0.0F, false));
+			tentacle4.setRotationPoint(-1.0F, 11.0F, 0.0F);
+			setRotationAngle(tentacle4, 1.1071F, -0.2527F, -0.9F);
+			tentacle4.cubeList.add(new ModelBox(tentacle4, 0, 27, -2.0F, -2.0F, 0.0F, 4, 4, 6, 0.0F, false));
 			bone11 = new ModelRenderer(this);
 			bone11.setRotationPoint(0.0F, 0.0F, 6.0F);
 			tentacle4.addChild(bone11);
 			setRotationAngle(bone11, 0.48F, 0.0F, 0.0F);
-			bone11.cubeList.add(new ModelBox(bone11, 0, 32, -1.5F, -1.5F, 0.0F, 3, 3, 7, 0.0F, false));
+			bone11.cubeList.add(new ModelBox(bone11, 0, 26, -1.5F, -1.5F, 0.0F, 3, 3, 7, 0.0F, false));
 			bone12 = new ModelRenderer(this);
 			bone12.setRotationPoint(0.0F, 0.0F, 7.0F);
 			bone11.addChild(bone12);
 			setRotationAngle(bone12, 0.7854F, 0.0F, 0.0F);
-			bone12.cubeList.add(new ModelBox(bone12, 0, 32, -1.5F, -1.5F, 0.0F, 3, 3, 7, 0.0F, false));
+			bone12.cubeList.add(new ModelBox(bone12, 0, 26, -1.5F, -1.5F, 0.0F, 3, 3, 7, 0.0F, false));
 			bone13 = new ModelRenderer(this);
 			bone13.setRotationPoint(0.0F, 0.0F, 7.0F);
 			bone12.addChild(bone13);
 			setRotationAngle(bone13, 0.6981F, 0.0F, 0.0F);
-			bone13.cubeList.add(new ModelBox(bone13, 2, 33, -1.0F, -1.0F, 0.0F, 2, 2, 6, 0.0F, false));
-			RightArm = new ModelRenderer(this);
-			RightArm.setRotationPoint(-5.0F, -10.0F, 0.0F);
-			Waist.addChild(RightArm);
-			RightArm_r1 = new ModelRenderer(this);
-			RightArm_r1.setRotationPoint(3.0F, 10.0F, 0.0F);
-			RightArm.addChild(RightArm_r1);
-			setRotationAngle(RightArm_r1, -2.9222F, -0.7761F, -0.0546F);
-			RightArm_r1.cubeList.add(new ModelBox(RightArm_r1, 32, 48, -4.0F, 1.0F, -2.0F, 4, 12, 4, 0.0F, false));
-			LeftArm = new ModelRenderer(this);
-			LeftArm.setRotationPoint(5.0F, -10.0F, 0.0F);
-			Waist.addChild(LeftArm);
-			LeftArm_r1 = new ModelRenderer(this);
-			LeftArm_r1.setRotationPoint(-1.0F, 8.0F, -3.0F);
-			LeftArm.addChild(LeftArm_r1);
-			setRotationAngle(LeftArm_r1, -3.0612F, -0.0343F, -0.4097F);
-			LeftArm_r1.cubeList.add(new ModelBox(LeftArm_r1, 32, 48, 0.0F, 1.0F, -2.0F, 4, 12, 4, 0.0F, false));
-			RightLeg = new ModelRenderer(this);
-			RightLeg.setRotationPoint(-1.9F, 12.0F, 0.0F);
-			RightLeg_r1 = new ModelRenderer(this);
-			RightLeg_r1.setRotationPoint(1.9F, 12.0F, 0.0F);
-			RightLeg.addChild(RightLeg_r1);
-			setRotationAngle(RightLeg_r1, -0.0436F, -0.0873F, 0.0F);
-			RightLeg_r1.cubeList.add(new ModelBox(RightLeg_r1, 16, 48, -3.9F, -12.0F, -2.0F, 4, 12, 4, 0.0F, false));
-			LeftLeg = new ModelRenderer(this);
-			LeftLeg.setRotationPoint(1.9F, 12.0F, 0.0F);
-			LeftLeg_r1 = new ModelRenderer(this);
-			LeftLeg_r1.setRotationPoint(-0.9F, 12.0F, -1.0F);
-			LeftLeg.addChild(LeftLeg_r1);
-			setRotationAngle(LeftLeg_r1, -0.0057F, 0.1308F, -0.044F);
-			LeftLeg_r1.cubeList.add(new ModelBox(LeftLeg_r1, 16, 48, -0.1F, -12.0F, -2.0F, 4, 12, 4, 0.0F, false));
+			bone13.cubeList.add(new ModelBox(bone13, 2, 27, -1.0F, -1.0F, 0.0F, 2, 2, 6, 0.0F, false));
 		}
 
 		@Override
 		public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-			Waist.render(f5);
-			RightLeg.render(f5);
-			LeftLeg.render(f5);
+			body.render(f5);
+			head.render(f5);
+			leg1.render(f5);
+			leg2.render(f5);
+			leg3.render(f5);
+			leg4.render(f5);
+			tentacle1.render(f5);
+			tentacle2.render(f5);
+			tentacle3.render(f5);
+			tentacle4.render(f5);
 		}
 
 		public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
@@ -388,8 +360,10 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 
 		public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e) {
 			super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
-			this.LeftLeg.rotateAngleX = MathHelper.cos(f * 1.0F) * -1.0F * f1;
-			this.RightLeg.rotateAngleX = MathHelper.cos(f * 1.0F) * 1.0F * f1;
+			this.leg1.rotateAngleY = MathHelper.cos(f * 1.0F) * 1.0F * f1;
+			this.leg4.rotateAngleX = MathHelper.cos(f * 1.0F) * 1.0F * f1;
+			this.leg2.rotateAngleX = MathHelper.cos(f * 1.0F) * -1.0F * f1;
+			this.leg3.rotateAngleX = MathHelper.cos(f * 1.0F) * -1.0F * f1;
 		}
 	}
 }

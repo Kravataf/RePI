@@ -30,7 +30,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelBase;
 
-import net.mcreator.reparasiteinfection.procedure.ProcedureParasiteSpawn;
+import net.mcreator.reparasiteinfection.procedure.ProcedureParasiteTag;
 import net.mcreator.reparasiteinfection.item.ItemBrokenCore;
 import net.mcreator.reparasiteinfection.ElementsReParasiteInfection;
 
@@ -136,7 +136,7 @@ public class EntityMollusk extends ElementsReParasiteInfection.ModElement {
 			{
 				java.util.HashMap<String, Object> $_dependencies = new java.util.HashMap<>();
 				$_dependencies.put("entity", entity);
-				ProcedureParasiteSpawn.executeProcedure($_dependencies);
+				ProcedureParasiteTag.executeProcedure($_dependencies);
 			}
 		}
 

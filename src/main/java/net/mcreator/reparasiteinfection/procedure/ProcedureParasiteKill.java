@@ -5,8 +5,13 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraft.world.World;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.monster.EntityZombieVillager;
+import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.Entity;
 
+import net.mcreator.reparasiteinfection.entity.EntityTaintedPig;
 import net.mcreator.reparasiteinfection.entity.EntityTaintedHumanoid;
 import net.mcreator.reparasiteinfection.entity.EntityMollusk;
 import net.mcreator.reparasiteinfection.ReParasiteInfectionVariables;
@@ -48,15 +53,40 @@ public class ProcedureParasiteKill extends ElementsReParasiteInfection.ModElemen
 		ReParasiteInfectionVariables.MapVariables
 				.get(world).RePoints = (double) ((ReParasiteInfectionVariables.MapVariables.get(world).RePoints) + 1);
 		ReParasiteInfectionVariables.MapVariables.get(world).syncData(world);
-		{
-			java.util.HashMap<String, Object> $_dependencies = new java.util.HashMap<>();
-			$_dependencies.put("world", world);
-			ProcedureSetPhase.executeProcedure($_dependencies);
-		}
 		found = (boolean) (false);
-		if ((entity instanceof EntityTaintedHumanoid.EntityCustom)) {
+		if ((entity instanceof EntityVillager)) {
 			if (!world.isRemote) {
 				Entity entityToSpawn = new EntityTaintedHumanoid.EntityCustom(world);
+				if (entityToSpawn != null) {
+					entityToSpawn.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360F, 0.0F);
+					world.spawnEntity(entityToSpawn);
+				}
+			}
+			found = (boolean) (true);
+		}
+		if ((entity instanceof EntityZombie)) {
+			if (!world.isRemote) {
+				Entity entityToSpawn = new EntityTaintedHumanoid.EntityCustom(world);
+				if (entityToSpawn != null) {
+					entityToSpawn.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360F, 0.0F);
+					world.spawnEntity(entityToSpawn);
+				}
+			}
+			found = (boolean) (true);
+		}
+		if ((entity instanceof EntityZombieVillager)) {
+			if (!world.isRemote) {
+				Entity entityToSpawn = new EntityTaintedHumanoid.EntityCustom(world);
+				if (entityToSpawn != null) {
+					entityToSpawn.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360F, 0.0F);
+					world.spawnEntity(entityToSpawn);
+				}
+			}
+			found = (boolean) (true);
+		}
+		if ((entity instanceof EntityPig)) {
+			if (!world.isRemote) {
+				Entity entityToSpawn = new EntityTaintedPig.EntityCustom(world);
 				if (entityToSpawn != null) {
 					entityToSpawn.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360F, 0.0F);
 					world.spawnEntity(entityToSpawn);

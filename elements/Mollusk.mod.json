@@ -85,7 +85,7 @@
     "particleAmount": 4,
     "particleSpawningCondition": "ALWAYS",
     "onMobTickUpdate": {
-      "name": "ParasiteSpawn"
+      "name": "ParasiteTag"
     },
     "hasAI": true,
     "aiBase": "(none)",

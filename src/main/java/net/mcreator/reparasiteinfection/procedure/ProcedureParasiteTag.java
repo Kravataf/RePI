@@ -5,14 +5,14 @@ import net.minecraft.entity.Entity;
 import net.mcreator.reparasiteinfection.ElementsReParasiteInfection;
 
 @ElementsReParasiteInfection.ModElement.Tag
-public class ProcedureParasiteSpawn extends ElementsReParasiteInfection.ModElement {
-	public ProcedureParasiteSpawn(ElementsReParasiteInfection instance) {
-		super(instance, 2);
+public class ProcedureParasiteTag extends ElementsReParasiteInfection.ModElement {
+	public ProcedureParasiteTag(ElementsReParasiteInfection instance) {
+		super(instance, 11);
 	}
 
 	public static void executeProcedure(java.util.HashMap<String, Object> dependencies) {
 		if (dependencies.get("entity") == null) {
-			System.err.println("Failed to load dependency entity for procedure ParasiteSpawn!");
+			System.err.println("Failed to load dependency entity for procedure ParasiteTag!");
 			return;
 		}
 		Entity entity = (Entity) dependencies.get("entity");
