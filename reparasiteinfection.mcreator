@@ -1,6 +1,6 @@
 {
   "id_map": {
-    "ENTITY": 2
+    "ENTITY": 4
   },
   "mod_elements": [
     {
@@ -109,6 +109,25 @@
           }
         ]
       }
+    },
+    {
+      "name": "Mollusk",
+      "type": "mob",
+      "sortid": 8,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {
+        "0": 3,
+        "1": 4
+      }
+    },
+    {
+      "name": "BrokenCore",
+      "type": "item",
+      "sortid": 9,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {}
     }
   ],
   "variable_elements": [
@@ -135,6 +154,8 @@
   "language_map": {
     "en_us": {
       "advancements.readv.descr": "Play RePI for the first time",
+      "entity.mollusk.name": "Mollusk",
+      "item.brokencore.name": "Broken Core",
       "entity.taintedhumanoid.name": "Tainted Humanoid",
       "advancements.readv.title": "Re:"
     }
