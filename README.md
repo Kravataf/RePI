@@ -29,6 +29,8 @@ this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityLivi
 
 There are also phases which are unlocked after parasites reach certain amount of RePoints (GLOBAL_MAP) <= these phases should do some stuff like change what parasites spawn, etc. etc. but I haven't implemented that yet
 
+Alsoo custom spawning so they can spawn anywhere at any time !! (+ spawnrate modifier)
+
 # Phases
 
 spawnrate is exponential from the base 20, i'll probably have to rebalance this later but idkk (0 = 20, 1 = 40, 2 = 80, 3 = 160, ...)
