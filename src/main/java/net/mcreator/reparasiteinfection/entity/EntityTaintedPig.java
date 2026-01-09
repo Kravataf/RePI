@@ -107,7 +107,7 @@ public class EntityTaintedPig extends ElementsReParasiteInfection.ModElement {
 		        return false;
 		    }
 		    
-		    if (phase < 0) {
+		    if (phase < 1) { // tainted spawn naturally from phase 1+
 		        return false;
 		    }
 		    

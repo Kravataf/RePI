@@ -108,7 +108,7 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 		        return false;
 		    }
 		    
-		    if (phase < 0) {
+		    if (phase < 1) { // tainted spawn naturally from phase 1+
 		        return false;
 		    }
 		    
