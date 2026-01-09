@@ -139,6 +139,14 @@
           }
         ]
       }
+    },
+    {
+      "name": "TaintedFlesh",
+      "type": "item",
+      "sortid": 12,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {}
     }
   ],
   "variable_elements": [
@@ -167,6 +175,7 @@
       "advancements.readv.descr": "Play RePI for the first time",
       "entity.mollusk.name": "Mollusk",
       "item.brokencore.name": "Broken Core",
+      "item.taintedflesh.name": "Tainted Flesh",
       "entity.taintedhumanoid.name": "Tainted Humanoid",
       "advancements.readv.title": "Re:",
       "entity.taintedpig.name": "Tainted Pig"

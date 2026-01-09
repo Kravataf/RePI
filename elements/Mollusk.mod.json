@@ -65,7 +65,7 @@
     "immuneToPotions": false,
     "immuneToPlayer": false,
     "mobDrop": {
-      "value": "CUSTOM:BrokenCore"
+      "value": "CUSTOM:TaintedFlesh"
     },
     "livingSound": {
       "value": ""

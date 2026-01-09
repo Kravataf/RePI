@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.DamageSource;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.ai.EntityAIWander;
@@ -36,11 +37,12 @@ import net.minecraft.client.model.ModelBase;
 
 import net.mcreator.reparasiteinfection.procedure.ProcedureParasiteTag;
 import net.mcreator.reparasiteinfection.procedure.ProcedureParasiteKill;
+import net.mcreator.reparasiteinfection.item.ItemTaintedFlesh;
 import net.mcreator.reparasiteinfection.ElementsReParasiteInfection;
 
 import java.util.Iterator;
 import java.util.ArrayList;
-// added these
+// added these
 import net.minecraft.entity.EntityLivingBase;
 import com.google.common.base.Predicate;
 import javax.annotation.Nullable;
@@ -79,7 +81,7 @@ public class EntityTaintedPig extends ElementsReParasiteInfection.ModElement {
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		RenderingRegistry.registerEntityRenderingHandler(EntityCustom.class, renderManager -> {
-			return new RenderLiving(renderManager, new ModeltaintedPig(), 1f) {
+			return new RenderLiving(renderManager, new ModeltaintedPig(), 0.8f) {
 				protected ResourceLocation getEntityTexture(Entity entity) {
 					return new ResourceLocation("reparasiteinfection:textures/taintedig_texture.png");
 				}
@@ -89,7 +91,7 @@ public class EntityTaintedPig extends ElementsReParasiteInfection.ModElement {
 	public static class EntityCustom extends EntityMob {
 		public EntityCustom(World world) {
 			super(world);
-			setSize(1f, 1f);
+			setSize(0.8f, 0.8f);
 			experienceValue = 5;
 			this.isImmuneToFire = false;
 			setNoAI(!true);
@@ -144,7 +146,7 @@ public class EntityTaintedPig extends ElementsReParasiteInfection.ModElement {
 
 		@Override
 		protected Item getDropItem() {
-			return null;
+			return new ItemStack(ItemTaintedFlesh.block, (int) (1)).getItem();
 		}
 
 		@Override
@@ -207,9 +209,9 @@ public class EntityTaintedPig extends ElementsReParasiteInfection.ModElement {
 			if (this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED) != null)
 				this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4D);
 			if (this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH) != null)
-				this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15D);
+				this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10D);
 			if (this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE) != null)
-				this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6D);
+				this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4D);
 		}
 	}
 

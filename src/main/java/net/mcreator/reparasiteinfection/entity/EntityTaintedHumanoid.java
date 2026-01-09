@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.DamageSource;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.ai.EntityAIWander;
@@ -36,6 +37,7 @@ import net.minecraft.client.model.ModelBase;
 
 import net.mcreator.reparasiteinfection.procedure.ProcedureParasiteTag;
 import net.mcreator.reparasiteinfection.procedure.ProcedureParasiteKill;
+import net.mcreator.reparasiteinfection.item.ItemTaintedFlesh;
 import net.mcreator.reparasiteinfection.ElementsReParasiteInfection;
 
 import java.util.Iterator;
@@ -145,7 +147,7 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 
 		@Override
 		protected Item getDropItem() {
-			return null;
+			return new ItemStack(ItemTaintedFlesh.block, (int) (1)).getItem();
 		}
 
 		@Override

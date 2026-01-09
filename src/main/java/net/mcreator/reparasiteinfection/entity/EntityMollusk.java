@@ -31,7 +31,7 @@ import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelBase;
 
 import net.mcreator.reparasiteinfection.procedure.ProcedureParasiteTag;
-import net.mcreator.reparasiteinfection.item.ItemBrokenCore;
+import net.mcreator.reparasiteinfection.item.ItemTaintedFlesh;
 import net.mcreator.reparasiteinfection.ElementsReParasiteInfection;
 
 import java.util.Iterator;
@@ -102,7 +102,7 @@ public class EntityMollusk extends ElementsReParasiteInfection.ModElement {
 
 		@Override
 		protected Item getDropItem() {
-			return new ItemStack(ItemBrokenCore.block, (int) (1)).getItem();
+			return new ItemStack(ItemTaintedFlesh.block, (int) (1)).getItem();
 		}
 
 		@Override

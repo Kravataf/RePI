@@ -6,9 +6,9 @@
     "mobLabel": "",
     "mobModelTexture": "taintedig_texture.png",
     "mobModelName": "ModeltaintedPig",
-    "modelWidth": 1.0,
-    "modelHeight": 1.0,
-    "modelShadowSize": 1.0,
+    "modelWidth": 0.8,
+    "modelHeight": 0.8,
+    "modelShadowSize": 0.8,
     "armorBaseValue": 0.0,
     "hasSpawnEgg": true,
     "spawnEggBaseColor": {
@@ -45,10 +45,10 @@
     },
     "mobBehaviourType": "Mob",
     "mobCreatureType": "UNDEFINED",
-    "attackStrength": 6,
+    "attackStrength": 4,
     "movementSpeed": 0.4,
     "trackingRange": 64,
-    "health": 15,
+    "health": 10,
     "xpAmount": 5,
     "waterMob": false,
     "flyingMob": false,
@@ -65,7 +65,7 @@
     "immuneToPotions": false,
     "immuneToPlayer": false,
     "mobDrop": {
-      "value": ""
+      "value": "CUSTOM:TaintedFlesh"
     },
     "livingSound": {
       "value": ""
