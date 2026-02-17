@@ -18,12 +18,15 @@ import net.minecraft.item.Item;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIPanic;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.model.ModelRenderer;
@@ -31,11 +34,18 @@ import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelBase;
 
 import net.mcreator.reparasiteinfection.procedure.ProcedureParasiteTag;
+import net.mcreator.reparasiteinfection.procedure.ProcedureParasiteKill;
 import net.mcreator.reparasiteinfection.item.ItemTaintedFlesh;
 import net.mcreator.reparasiteinfection.ElementsReParasiteInfection;
 
 import java.util.Iterator;
 import java.util.ArrayList;
+// some dependencies
+import net.minecraft.entity.EntityLivingBase;
+import com.google.common.base.Predicate;
+import javax.annotation.Nullable;
+import net.minecraft.util.math.BlockPos;
+import net.mcreator.reparasiteinfection.ReParasiteInfectionVariables;
 
 @ElementsReParasiteInfection.ModElement.Tag
 public class EntityMollusk extends ElementsReParasiteInfection.ModElement {
@@ -88,11 +98,19 @@ public class EntityMollusk extends ElementsReParasiteInfection.ModElement {
 		@Override
 		protected void initEntityAI() {
 			super.initEntityAI();
-			this.tasks.addTask(1, new EntityAIPanic(this, 1.2));
-			this.tasks.addTask(2, new EntityAIWander(this, 1));
-			this.tasks.addTask(3, new EntityAILookIdle(this));
-			this.tasks.addTask(4, new EntityAISwimming(this));
-			this.tasks.addTask(5, new EntityAILeapAtTarget(this, (float) 1));
+			this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
+			// override AttackableTarget w/ this
+			this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 10, false, false, new Predicate<EntityLivingBase>() {
+			  @Override
+			  public boolean apply(@Nullable EntityLivingBase entity) {
+			    return entity != null && !entity.getEntityData().getBoolean("ReParasite");
+			  }
+			}));
+			this.tasks.addTask(3, new EntityAIAttackMelee(this, 1, false));
+			this.tasks.addTask(4, new EntityAIWander(this, 1));
+			this.tasks.addTask(5, new EntityAILookIdle(this));
+			this.tasks.addTask(6, new EntityAISwimming(this));
+			this.tasks.addTask(7, new EntityAILeapAtTarget(this, (float) 1));
 		}
 
 		@Override
@@ -127,6 +145,23 @@ public class EntityMollusk extends ElementsReParasiteInfection.ModElement {
 		}
 
 		@Override
+		public void onKillEntity(EntityLivingBase entity) {
+			super.onKillEntity(entity);
+			int x = (int) this.posX;
+			int y = (int) this.posY;
+			int z = (int) this.posZ;
+			{
+				java.util.HashMap<String, Object> $_dependencies = new java.util.HashMap<>();
+				$_dependencies.put("entity", entity);
+				$_dependencies.put("x", x);
+				$_dependencies.put("y", y);
+				$_dependencies.put("z", z);
+				$_dependencies.put("world", world);
+				ProcedureParasiteKill.executeProcedure($_dependencies);
+			}
+		}
+
+		@Override
 		public void onEntityUpdate() {
 			super.onEntityUpdate();
 			int x = (int) this.posX;
@@ -150,7 +185,32 @@ public class EntityMollusk extends ElementsReParasiteInfection.ModElement {
 			if (this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH) != null)
 				this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(5D);
 			if (this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE) != null)
-				this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(0D);
+				this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4D);
+		}
+
+		@Override
+		public boolean getCanSpawnHere() {
+		    double phase = ReParasiteInfectionVariables.MapVariables.get(world).Phase;
+		    
+		    boolean canSpawn = this.world.getBlockState((new BlockPos(this)).down()).canEntitySpawn(this) 
+		                      && this.world.checkNoEntityCollision(this.getEntityBoundingBox())
+		                      && !this.world.containsAnyLiquid(this.getEntityBoundingBox());
+		    
+		    if (!canSpawn) {
+		        return false;
+		    }
+		    
+		    if (phase < 0) { // starting parasite
+		        return false;
+		    }
+		    
+		    double spawnMultiplier = Math.pow(2, phase);
+		    
+		    if (spawnMultiplier >= 1) {
+		        return true;
+		    }
+		    
+		    return world.rand.nextDouble() < spawnMultiplier;
 		}
 	}
 
