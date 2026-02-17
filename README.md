@@ -8,7 +8,7 @@ Mollusk will spawn anytime, anywhere in the world and infect mobs (+compat w/ ot
 
 # Systems
 
-ATTACKING
+attacking everything that isnt a parasite
 ```
 // some dependencies
 import net.minecraft.entity.EntityLivingBase;
@@ -26,7 +26,7 @@ this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityLivi
 }));
 ```
 
-SPAWNING
+can spawn anywhere
 ```
 @Override
 		public boolean getCanSpawnHere() {
