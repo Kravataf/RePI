@@ -28,7 +28,30 @@ this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityLivi
 
 SPAWNING
 ```
-
+@Override
+		public boolean getCanSpawnHere() {
+		    double phase = ReParasiteInfectionVariables.MapVariables.get(world).Phase;
+		    
+		    boolean canSpawn = this.world.getBlockState((new BlockPos(this)).down()).canEntitySpawn(this) 
+		                      && this.world.checkNoEntityCollision(this.getEntityBoundingBox())
+		                      && !this.world.containsAnyLiquid(this.getEntityBoundingBox());
+		    
+		    if (!canSpawn) {
+		        return false;
+		    }
+		    
+		    if (phase < 1) { // tainted spawn naturally from phase 1+
+		        return false;
+		    }
+		    
+		    double spawnMultiplier = Math.pow(2, phase);
+		    
+		    if (spawnMultiplier >= 1) {
+		        return true;
+		    }
+		    
+		    return world.rand.nextDouble() < spawnMultiplier;
+		}
 ```
 
 # Credits
