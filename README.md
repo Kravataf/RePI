@@ -1,8 +1,10 @@
 # Re: Parasite Infection
 
-1.12.2 forge mcreator 2020.2 <= other 1.12.2 generators for newer versions were lowkey ass so I gave up on trying to use them and instead write stuff in Java
+made using 1.12.2 forge mcreator 2020.2
 
-Sounds are from zapsplat
+# Desc //
+
+Mollusk will spawn anytime, anywhere in the world and infect mobs (+compat w/ other mods!), those will turn into their tainted version or/ fallback to some placeholder tainted. then all infected mobs, parasites, etc. infect more and this repeats basically. Id like to add phases/evolutions someday similar to srp but yh
 
 # Systems/ other stuff
 
@@ -31,6 +33,14 @@ There are also phases which are unlocked after parasites reach certain amount of
 
 Alsoo custom spawning so they can spawn anywhere at any time !! (+ spawnrate modifier)
 
+```
+
+```
+
 # Phases
 
 spawnrate is exponential from the base 20, i'll probably have to rebalance this later but idkk (0 = 20, 1 = 40, 2 = 80, 3 = 160, ...)
+
+# ? credits ig
+
+sfx from zapsplat rest made by me . inspired by srp, parasyte, tokyo ghoul, etc. etc.
