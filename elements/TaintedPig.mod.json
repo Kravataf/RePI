@@ -87,7 +87,7 @@
     "whenThisMobKillsAnother": {
       "name": "ParasiteKill"
     },
-    "onMobTickUpdate": {
+    "onInitialSpawn": {
       "name": "ParasiteTag"
     },
     "hasAI": true,

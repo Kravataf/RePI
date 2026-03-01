@@ -17,5 +17,6 @@ public class ProcedureParasiteTag extends ElementsReParasiteInfection.ModElement
 		}
 		Entity entity = (Entity) dependencies.get("entity");
 		entity.getEntityData().setBoolean("ReParasite", (true));
+		entity.setCustomNameTag((("tag?") + "" + ((entity.getEntityData().getBoolean("ReParasite")))));
 	}
 }

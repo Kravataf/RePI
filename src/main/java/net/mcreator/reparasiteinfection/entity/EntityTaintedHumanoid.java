@@ -11,6 +11,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.World;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.DamageSource;
@@ -25,6 +26,7 @@ import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.EntityLivingBase;
@@ -148,6 +150,21 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 		}
 
 		@Override
+		public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingdata) {
+			IEntityLivingData retval = super.onInitialSpawn(difficulty, livingdata);
+			int x = (int) this.posX;
+			int y = (int) this.posY;
+			int z = (int) this.posZ;
+			Entity entity = this;
+			{
+				java.util.HashMap<String, Object> $_dependencies = new java.util.HashMap<>();
+				$_dependencies.put("entity", entity);
+				ProcedureParasiteTag.executeProcedure($_dependencies);
+			}
+			return retval;
+		}
+
+		@Override
 		public void onKillEntity(EntityLivingBase entity) {
 			super.onKillEntity(entity);
 			int x = (int) this.posX;
@@ -161,20 +178,6 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 				$_dependencies.put("z", z);
 				$_dependencies.put("world", world);
 				ProcedureParasiteKill.executeProcedure($_dependencies);
-			}
-		}
-
-		@Override
-		public void onEntityUpdate() {
-			super.onEntityUpdate();
-			int x = (int) this.posX;
-			int y = (int) this.posY;
-			int z = (int) this.posZ;
-			Entity entity = this;
-			{
-				java.util.HashMap<String, Object> $_dependencies = new java.util.HashMap<>();
-				$_dependencies.put("entity", entity);
-				ProcedureParasiteTag.executeProcedure($_dependencies);
 			}
 		}
 
