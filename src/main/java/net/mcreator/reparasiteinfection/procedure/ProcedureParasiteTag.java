@@ -1,7 +1,5 @@
 package net.mcreator.reparasiteinfection.procedure;
 
-import net.minecraft.entity.Entity;
-
 import net.mcreator.reparasiteinfection.ElementsReParasiteInfection;
 
 @ElementsReParasiteInfection.ModElement.Tag
@@ -11,12 +9,5 @@ public class ProcedureParasiteTag extends ElementsReParasiteInfection.ModElement
 	}
 
 	public static void executeProcedure(java.util.HashMap<String, Object> dependencies) {
-		if (dependencies.get("entity") == null) {
-			System.err.println("Failed to load dependency entity for procedure ParasiteTag!");
-			return;
-		}
-		Entity entity = (Entity) dependencies.get("entity");
-		entity.getEntityData().setBoolean("ReParasite", (true));
-		entity.setCustomNameTag((("tag?") + "" + ((entity.getEntityData().getBoolean("ReParasite")))));
 	}
 }

@@ -54,6 +54,16 @@ can spawn anywhere
 		}
 ```
 
+using this instead of ParasiteTag now ig
+
+```
+@Override
+public void onAddedToWorld() {
+    super.onAddedToWorld();
+    this.getEntityData().setBoolean("ReParasite", true);
+}
+```
+
 phases
 
 # Credits

@@ -215,6 +215,12 @@ public class EntityMollusk extends ElementsReParasiteInfection.ModElement {
 		    
 		    return world.rand.nextDouble() < spawnMultiplier;
 		}
+
+		@Override
+		public void onAddedToWorld() {
+		    super.onAddedToWorld();
+		    this.getEntityData().setBoolean("ReParasite", true);
+		}
 	}
 
 	public static class Modelmollusk extends ModelBase {

@@ -216,6 +216,12 @@ public class EntityIncompleteForm extends ElementsReParasiteInfection.ModElement
 		    
 		    return world.rand.nextDouble() < spawnMultiplier;
 		}
+
+		@Override
+		public void onAddedToWorld() {
+		    super.onAddedToWorld();
+		    this.getEntityData().setBoolean("ReParasite", true);
+		}
 	}
 
 	public static class ModelIncompleteForm extends ModelBase {
