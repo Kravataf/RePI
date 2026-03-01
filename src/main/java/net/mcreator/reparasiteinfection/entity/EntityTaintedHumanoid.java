@@ -42,7 +42,7 @@ import net.mcreator.reparasiteinfection.ElementsReParasiteInfection;
 
 import java.util.Iterator;
 import java.util.ArrayList;
-// added these
+// some dependencies
 import net.minecraft.entity.EntityLivingBase;
 import com.google.common.base.Predicate;
 import javax.annotation.Nullable;
@@ -60,8 +60,8 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 	@Override
 	public void initElements() {
 		elements.entities.add(() -> EntityEntryBuilder.create().entity(EntityCustom.class)
-				.id(new ResourceLocation("reparasiteinfection", "taintedhumanoid"), ENTITYID).name("taintedhumanoid").tracker(64, 3, true).egg(-1, -1)
-				.build());
+				.id(new ResourceLocation("reparasiteinfection", "transmutedhumanoid"), ENTITYID).name("transmutedhumanoid").tracker(64, 3, true)
+				.egg(-1, -1).build());
 	}
 
 	@Override
@@ -99,38 +99,14 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 		}
 
 		@Override
-		public boolean getCanSpawnHere() {
-		    double phase = ReParasiteInfectionVariables.MapVariables.get(world).Phase;
-		    
-		    boolean canSpawn = this.world.getBlockState((new BlockPos(this)).down()).canEntitySpawn(this) 
-		                      && this.world.checkNoEntityCollision(this.getEntityBoundingBox())
-		                      && !this.world.containsAnyLiquid(this.getEntityBoundingBox());
-		    
-		    if (!canSpawn) {
-		        return false;
-		    }
-		    
-		    if (phase < 1) { // tainted spawn naturally from phase 1+
-		        return false;
-		    }
-		    
-		    double spawnMultiplier = Math.pow(2, phase);
-		    
-		    if (spawnMultiplier >= 1) {
-		        return true;
-		    }
-		    
-		    return world.rand.nextDouble() < spawnMultiplier;
-		}
-
-		@Override
 		protected void initEntityAI() {
 			super.initEntityAI();
+			// override AttackableTarget w/ this
 			this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 10, false, false, new Predicate<EntityLivingBase>() {
-			    @Override
-			    public boolean apply(@Nullable EntityLivingBase entity) {
-			        return entity != null && !entity.getEntityData().getBoolean("ReParasite");
-			    }
+			  @Override
+			  public boolean apply(@Nullable EntityLivingBase entity) {
+			    return entity != null && !entity.getEntityData().getBoolean("ReParasite");
+			  }
 			}));
 			this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
 			this.tasks.addTask(3, new EntityAIAttackMelee(this, 1, false));
@@ -213,6 +189,31 @@ public class EntityTaintedHumanoid extends ElementsReParasiteInfection.ModElemen
 				this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15D);
 			if (this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE) != null)
 				this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6D);
+		}
+
+		@Override
+		public boolean getCanSpawnHere() {
+		    double phase = ReParasiteInfectionVariables.MapVariables.get(world).Phase;
+		    
+		    boolean canSpawn = this.world.getBlockState((new BlockPos(this)).down()).canEntitySpawn(this) 
+		                      && this.world.checkNoEntityCollision(this.getEntityBoundingBox())
+		                      && !this.world.containsAnyLiquid(this.getEntityBoundingBox());
+		    
+		    if (!canSpawn) {
+		        return false;
+		    }
+		    
+		    if (phase < 1) { // tainted spawn naturally from phase 1+
+		        return false;
+		    }
+		    
+		    double spawnMultiplier = Math.pow(2, phase);
+		    
+		    if (spawnMultiplier >= 1) {
+		        return true;
+		    }
+		    
+		    return world.rand.nextDouble() < spawnMultiplier;
 		}
 	}
 

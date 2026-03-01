@@ -2,7 +2,7 @@
   "_fv": 6,
   "_type": "mob",
   "definition": {
-    "mobName": "Tainted Humanoid",
+    "mobName": "Transmuted Humanoid",
     "mobLabel": "",
     "mobModelTexture": "taintedumanoid_texture3.png",
     "mobModelName": "ModeltaintedHumanoid_model",
