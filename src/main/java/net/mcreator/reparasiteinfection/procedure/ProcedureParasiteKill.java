@@ -13,7 +13,7 @@ import net.minecraft.entity.Entity;
 
 import net.mcreator.reparasiteinfection.entity.EntityTaintedPig;
 import net.mcreator.reparasiteinfection.entity.EntityTaintedHumanoid;
-import net.mcreator.reparasiteinfection.entity.EntityMollusk;
+import net.mcreator.reparasiteinfection.entity.EntityIncompleteForm;
 import net.mcreator.reparasiteinfection.ReParasiteInfectionVariables;
 import net.mcreator.reparasiteinfection.ElementsReParasiteInfection;
 
@@ -96,7 +96,7 @@ public class ProcedureParasiteKill extends ElementsReParasiteInfection.ModElemen
 		}
 		if (((found) == (false))) {
 			if (!world.isRemote) {
-				Entity entityToSpawn = new EntityMollusk.EntityCustom(world);
+				Entity entityToSpawn = new EntityIncompleteForm.EntityCustom(world);
 				if (entityToSpawn != null) {
 					entityToSpawn.setLocationAndAngles(x, y, z, world.rand.nextFloat() * 360F, 0.0F);
 					world.spawnEntity(entityToSpawn);
